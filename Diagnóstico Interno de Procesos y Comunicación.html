@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Interno de Procesos y Comunicación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans antialiased text-gray-900">
+
+    <div class="max-w-3xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            
+            <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white">
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">Diagnóstico Interno de Procesos y Comunicación</h1>
+                <p class="text-indigo-100 text-sm md:text-base">Por favor, responde con sinceridad. Este formulario busca identificar oportunidades de mejora operativa.</p>
+            </div>
+
+            <div class="bg-gray-100 h-2 w-full">
+                <div id="progressBar" class="bg-indigo-500 h-2 transition-all duration-300" style="width: 0%;"></div>
+            </div>
+
+            <form id="quizForm" class="p-8 space-y-8">
+                
+                <div class="step active" data-step="0">
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p class="font-medium text-gray-800 text-lg">Introducción del formulario</p>
+                        <p>Estamos realizando un diagnóstico interno para identificar oportunidades de mejora en nuestros procesos, comunicación, herramientas y forma de trabajo.</p>
+                        <p>El objetivo de este cuestionario es entender mejor cómo operamos hoy para poder hacer el trabajo más claro, más eficiente y más ordenado.</p>
+                        <p>Tus respuestas serán muy valiosas para detectar áreas de mejora reales y construir mejores procesos internos.</p>
+                        <p class="bg-yellow-50 text-yellow-800 p-4 rounded-xl border border-yellow-100 font-medium text-sm">
+                            ⚠️ Este formulario no busca evaluar personas, sino conocer el funcionamiento diario del equipo.
+                        </p>
+                        <p class="text-sm text-gray-500 flex items-center gap-2 pt-2">
+                            ⏱️ <strong>Tiempo estimado de respuesta:</strong> 8 a 10 minutos.
+                        </p>
+                    </div>
+                    <div class="mt-8 flex justify-end">
+                        <button type="button" onclick="nextStep()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Comenzar Cuestionario</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="1">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 1. Información general</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">1. Nombre completo <span class="text-red-500">*</span></label>
+                            <input type="text" name="1. Nombre completo" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">2. Puesto o cargo actual <span class="text-red-500">*</span></label>
+                            <input type="text" name="2. Puesto o cargo actual" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">3. Área o departamento al que perteneces</label>
+                            <input type="text" name="3. Área o departamento al que perteneces" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">4. Tiempo que llevas en la empresa <span class="text-red-500">*</span></label>
+                            <div class="space-y-2 mt-2">
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="4. Tiempo que llevas en la empresa" value="Menos de 6 meses" required class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Menos de 6 meses</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="4. Tiempo que llevas en la empresa" value="6 meses a 1 año" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> 6 meses a 1 año</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="4. Tiempo que llevas en la empresa" value="1 a 3 años" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> 1 a 3 años</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="4. Tiempo que llevas en la empresa" value="Más de 3 años" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Más de 3 años</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">5. ¿Con qué personas o áreas trabajas con más frecuencia?</label>
+                            <input type="text" name="5. ¿Con qué personas o áreas trabajas con más frecuencia?" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="2">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 2. Tareas y carga de trabajo</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">6. ¿Cuáles son las 5 tareas que realizas con más frecuencia?</label>
+                            <textarea name="6. ¿Cuáles son las 5 tareas que realizas con más frecuencia?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">7. ¿Qué tarea te toma más tiempo durante tu jornada laboral?</label>
+                            <textarea name="7. ¿Qué tarea te toma más tiempo durante tu jornada laboral?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">8. ¿Qué tarea haces de forma manual y consideras que podría realizarse de manera más eficiente?</label>
+                            <textarea name="8. ¿Qué tarea haces de forma manual y consideras que podría realizarse de manera más eficiente?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">9. ¿Qué trabajo se retrasa con más frecuencia en tu área?</label>
+                            <textarea name="9. ¿Qué trabajo se retrasa con más frecuencia en tu área?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">10. ¿Qué actividad tienes que rehacer con frecuencia por errores, cambios o falta de información?</label>
+                            <textarea name="10. ¿Qué actividad tienes que rehacer con frecuencia por errores, cambios o falta de información?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="3">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 3. Procesos de trabajo</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">11. Describe paso a paso una tarea o proceso importante que realices de manera habitual.</label>
+                            <textarea name="11. Describe paso a paso una tarea o proceso importante que realices de manera habitual." rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">12. ¿En qué parte de ese proceso suelen presentarse más problemas o retrasos?</label>
+                            <textarea name="12. ¿En qué parte de ese proceso suelen presentarse más problemas o retrasos?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">13. ¿Qué información necesitas para hacer bien tu trabajo y de quién depende esa información?</label>
+                            <textarea name="13. ¿Qué información necesitas para hacer bien tu trabajo y de quién depende esa información?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">14. ¿Qué documentos, formatos o archivos utilizas con más frecuencia?</label>
+                            <textarea name="14. ¿Qué documentos, formatos o archivos utilizas con más frecuencia?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">15. ¿Qué proceso depende demasiado de una sola persona?</label>
+                            <textarea name="15. ¿Qué proceso depende demasiado de una sola persona?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">16. ¿Qué proceso consideras que no está bien documentado o no está claramente definido?</label>
+                            <textarea name="16. ¿Qué proceso consideras que no está bien documentado o no está claramente definido?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="4">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 4. Comunicación interna</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">17. ¿Cómo recibes normalmente instrucciones, cambios o pendientes de trabajo?</label>
+                            <textarea name="17. ¿Cómo recibes normalmente instrucciones, cambios o pendientes de trabajo?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?</label>
+                            <div class="space-y-2 mt-2">
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?" value="WhatsApp" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> WhatsApp</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?" value="Correo electrónico" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Correo electrónico</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?" value="Llamadas telefónicas" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Llamadas telefónicas</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?" value="Reuniones presenciales" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Reuniones presenciales</label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 cursor-pointer"><input type="radio" name="18. ¿Qué medio de comunicación se utiliza más en tu trabajo diario?" value="Otro" class="text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Otro</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">19. ¿Dónde crees que se pierde más información dentro de la empresa?</label>
+                            <textarea name="19. ¿Dónde crees que se pierde más información dentro de la empresa?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">20. ¿Qué tipo de mensajes o instrucciones suelen llegar incompletos o poco claros?</label>
+                            <textarea name="20. ¿Qué tipo de mensajes o instrucciones suelen llegar incompletos o poco claros?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">21. ¿Qué problemas de coordinación existen entre áreas o personas?</label>
+                            <textarea name="21. ¿Qué problemas de coordinación existen entre áreas o personas?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">22. ¿Qué cambiarías para que la comunicación interna fuera más clara y eficiente?</label>
+                            <textarea name="22. ¿Qué cambiarías para que la comunicación interna fuera más clara y eficiente?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="5">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 5. Herramientas y documentos</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">23. ¿Qué herramientas o programas usas con más frecuencia en tu trabajo?</label>
+                            <textarea name="23. ¿Qué herramientas o programas usas con más frecuencia en tu trabajo?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">24. ¿Qué tareas haces actualmente en Excel, Word, correo o WhatsApp que podrían estar mejor organizadas con un sistema?</label>
+                            <textarea name="24. ¿Qué tareas haces actualmente en Excel, Word, correo o WhatsApp que podrían estar mejor organizadas con un sistema?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">25. ¿Qué tipo de documentos elaboras con más frecuencia?</label>
+                            <textarea name="25. ¿Qué tipo de documentos elaboras con más frecuencia?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">26. ¿Qué documento o reporte te parece más tedioso o tardado de hacer?</label>
+                            <textarea name="26. ¿Qué documento o reporte te parece más tedioso o tardado de hacer?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">27. ¿Qué herramienta o sistema crees que falta para trabajar mejor?</label>
+                            <textarea name="27. ¿Qué herramienta o sistema crees que falta para trabajar mejor?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="button" onclick="nextStep()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition shadow-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="6">
+                    <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-6">Sección 6. Mejora y automatización</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">28. Si pudieras resolver un solo problema del trabajo diario, ¿cuál sería?</label>
+                            <textarea name="28. Si pudieras resolver un solo problema del trabajo diario, ¿cuál sería?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">29. ¿Qué tarea de tu trabajo crees que podría automatizarse o simplificarse?</label>
+                            <textarea name="29. ¿Qué tarea de tu trabajo crees que podría automatizarse o simplificarse?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">30. ¿Qué parte de tu trabajo nunca debería automatizarse y por qué?</label>
+                            <textarea name="30. ¿Qué parte de tu trabajo nunca debería automatizarse y por qué?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">31. ¿Qué cambio haría tu trabajo más rápido, más claro o menos pesado?</label>
+                            <textarea name="31. ¿Qué cambio haría tu trabajo más rápido, más claro o menos pesado?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">32. ¿Qué sugerencia darías para mejorar la operation general de la empresa?</label>
+                            <textarea name="32. ¿Qué sugerencia darías para mejorar la operación general de la empresa?" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" onclick="prevStep()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition">Atrás</button>
+                        <button type="submit" id="submitBtn" class="px-8 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition shadow-sm">Enviar Respuestas</button>
+                    </div>
+                </div>
+
+                <div class="step" data-step="7" id="successStep">
+                    <div class="text-center py-12 space-y-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full text-3xl font-bold mx-auto">✓</div>
+                        <h2 class="text-2xl font-bold text-gray-800">¡Cuestionario Enviado con Éxito!</h2>
+                        <div class="text-gray-600 max-w-md mx-auto space-y-2 pt-2">
+                            <p>Gracias por tomar el tiempo de responder.</p>
+                            <p>Tu opinión nos ayudará a detectar oportunidades reales de mejora en procesos, comunicación y organización interna.</p>
+                            <p class="text-sm text-gray-400">Toda la información será utilizada con fines de diagnóstico y mejora operativa.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // REEMPLAZA ESTA URL CON TU URL DE GOOGLE APPS SCRIPT WEB APP UNA VEZ PUBLICADA
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwO2iSsfTNfNF7gxc74dBR6sFobMTrbNBYH4qBVEfw6Yqg0EHFhZMdXTbJLDfsn3aAP/exec";
+
+        let currentStep = 0;
+        const totalSteps = 6; // Del paso 1 al 6 son de preguntas
+        const steps = document.querySelectorAll('.step');
+        const progressBar = document.getElementById('progressBar');
+
+        function updateProgress() {
+            const percentage = (currentStep / totalSteps) * 100;
+            progressBar.style.width = `${Math.min(percentage, 100)}%`;
+        }
+
+        function showStep(stepIndex) {
+            steps.forEach(step => step.classList.remove('active'));
+            steps[stepIndex].classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateProgress();
+        }
+
+        function validateStep(stepIndex) {
+            const activeStepElement = steps[stepIndex];
+            const requiredFields = activeStepElement.querySelectorAll('[required]');
+            for (let field of requiredFields) {
+                if (field.type === 'radio') {
+                    const name = field.name;
+                    const checked = activeStepElement.querySelector(`input[name="${name}"]:checked`);
+                    if (!checked) {
+                        alert("Por favor, responde las preguntas obligatorias marcadas con asterisco (*).");
+                        return false;
+                    }
+                } else if (!field.value.trim()) {
+                    field.focus();
+                    alert("Por favor, completa los campos obligatorios marcados con asterisco (*).");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function nextStep() {
+            if (currentStep > 0 && !validateStep(currentStep)) return;
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Manejo del envío del formulario
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Enviando...";
+
+            const formData = new FormData(this);
+            
+            // Convertir FormData a URLSearchParams para que sea compatible sin problemas de CORS
+            const searchParams = new URLSearchParams();
+            for (const pair of formData.entries()) {
+                searchParams.append(pair[0], pair[1]);
+            }
+
+            // Envío asíncrono a Google Sheets
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                body: searchParams,
+                mode: 'no-cors' // Evita restricciones CORS cruzadas comunes en navegadores
+            })
+            .then(() => {
+                // Al usar no-cors no podemos inspeccionar la respuesta, pero si llega aquí se procesó en el backend
+                currentStep = 7;
+                showStep(currentStep);
+                progressBar.style.width = '100%';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un problema al enviar tus respuestas. Por favor, inténtalo de nuevo.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Enviar Respuestas";
+            });
+        });
+    </script>
+</body>
+</html>
